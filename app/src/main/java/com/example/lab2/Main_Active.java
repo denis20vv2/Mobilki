@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 
 public class Main_Active extends Activity {
 
+    private String currentLanguage;
     String username;
     String password;
 
@@ -36,6 +38,12 @@ public class Main_Active extends Activity {
 
         String savedInput = sharedPreferences.getString("text", "");
         textView.setText(savedInput);
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String savedLanguage = preferences.getString("language", "");
+
+        // Установить сохраненный язык интерфейса в переменную currentLanguage
+        currentLanguage = savedLanguage;
     }
     @Override
     protected void onPause() {
@@ -46,6 +54,12 @@ public class Main_Active extends Activity {
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("text", userInput);
+        //editor.apply();
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+
+        editor.putString("language", currentLanguage);
         editor.apply();
     }
     @Override
