@@ -66,10 +66,10 @@ public class Main_Active extends Activity {
                 }*/
 
 
-                if (username.equals("admin") && password.equals("123456")) {
-                    Intent gfds = new Intent(Main_Active.this, View_active.class);
-
-                    startActivity(gfds);
+                if (username.equals("admin1") && password.equals("123456")) {
+                    Intent intent = new Intent(Main_Active.this, View_active.class);
+                    intent.putExtra("dataKey",username);
+                    startActivity(intent);
                 } else {
                     Toast.makeText(Main_Active.this, "Неправильный логин или пароль", Toast.LENGTH_SHORT).show();
                     //finish();
