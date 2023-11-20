@@ -7,14 +7,14 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="156dp"
-        android:layout_height="55dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
-        android:text="Зарегистрироваться"
         style="@style/ButtonStyle"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintEnd_toStartOf="@+id/guideline" />
+        android:layout_width="169dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="32dp"
+        android:text="Зарегистрироваться"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button3" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -25,14 +25,14 @@
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="156dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="24dp"
-        android:text="Войти"
         style="@style/ButtonStyle"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline" />
+        android:layout_width="176dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="60dp"
+        android:text="Войти"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumberPassword" />
 
     <androidx.constraintlayout.widget.Barrier
         android:layout_width="wrap_content"
@@ -55,7 +55,7 @@
 
     <EditText
         android:id="@+id/editTextNumberPassword"
-        android:layout_width="371dp"
+        android:layout_width="325dp"
         android:layout_height="49dp"
         android:layout_marginBottom="100dp"
         android:ems="10"
@@ -68,8 +68,8 @@
 
     <EditText
         android:id="@+id/editTextText"
-        android:layout_width="371dp"
-        android:layout_height="49dp"
+        android:layout_width="326dp"
+        android:layout_height="48dp"
         android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="Логин"
@@ -78,5 +78,16 @@
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline5" />
+
+    <Button
+        android:id="@+id/button5"
+        style="@style/ButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="344dp"
+        android:text="Language"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
