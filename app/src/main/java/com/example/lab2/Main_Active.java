@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 public class Main_Active extends Activity {
 
     private DatabaseHandler dbHandler;
+
     Button button;
     Button button3;
     TextView textView ;
@@ -31,6 +32,8 @@ public class Main_Active extends Activity {
         Button button3 = findViewById(R.id.button3);
         TextView textView = findViewById(R.id.editTextText);
         TextView password_line = findViewById(R.id.editTextNumberPassword);
+        TextView editTextNumberPassword2 = findViewById(R.id.editTextNumberPassword2);
+        Button button6 = findViewById(R.id.button6);
 
 
       //  File file = new File("C:\\Users\\denis\\AndroidStudioProjects\\Mobilki\\Mobilki\\app\\src\\main\\res\\datebase.txt");
@@ -40,6 +43,7 @@ public class Main_Active extends Activity {
             public void onClick(View v) {
                 String username = textView.getText().toString();
                 String password = password_line.getText().toString();
+                String newPassword = editTextNumberPassword2.getText().toString();
 
                 boolean users = dbHandler.checkUser(username, password);
 
@@ -48,6 +52,7 @@ public class Main_Active extends Activity {
 
                     Intent intent = new Intent(Main_Active.this, View_active.class);
                     intent.putExtra("dataKey",username);
+                     intent.putExtra("pasKey",password);
                     startActivity(intent);
                 } else {
                     Toast.makeText(Main_Active.this, "Неправильный логин или пароль", Toast.LENGTH_SHORT).show();
@@ -67,6 +72,18 @@ public class Main_Active extends Activity {
 
             }
 
+        });
+
+        button6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String username = textView.getText().toString();
+                String password = password_line.getText().toString();
+                String newPassword = editTextNumberPassword2.getText().toString();
+
+                boolean users = dbHandler.checkUser(username, password);
+                dbHandler.changePas(username, password, newPassword);
+            }
         });
 
         button.setOnClickListener(new View.OnClickListener() {
