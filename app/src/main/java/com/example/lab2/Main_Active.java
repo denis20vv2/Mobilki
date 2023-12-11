@@ -3,6 +3,7 @@ package com.example.lab2;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -64,6 +65,7 @@ public class Main_Active extends Activity {
         button6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final Handler h = new Handler();
 
 
 
@@ -77,6 +79,14 @@ public class Main_Active extends Activity {
                         String newPassword = editTextNumberPassword2.getText().toString();
                         boolean users = dbHandler.checkUser(username, password);
                         dbHandler.changePas(username, password, newPassword);
+
+                        runOnUiThread(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                Toast.makeText(Main_Active.this, "Пароль изменён", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                         //Toast.makeText(Main_Active.this, "Пароль изменён", Toast.LENGTH_SHORT).show();
                     }
                 }).start();
@@ -86,6 +96,8 @@ public class Main_Active extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                final Handler h = new Handler();
                 //String username = textView.getText().toString();
                 //String password = password_line.getText().toString();
                 new Thread(new Runnable() {
@@ -94,6 +106,14 @@ public class Main_Active extends Activity {
                         String username = textView.getText().toString();
                         String password = password_line.getText().toString();
                         dbHandler.addUser(new User(username, password));
+
+                        runOnUiThread(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                Toast.makeText(Main_Active.this, "Пользователь создан", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                         //Toast.makeText(Main_Active.this, "Пользователь создан", Toast.LENGTH_SHORT).show();
                     }
                 }).start();
@@ -101,7 +121,7 @@ public class Main_Active extends Activity {
 
 
 
-                Toast.makeText(Main_Active.this, "Пользователь создан", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(Main_Active.this, "Пользователь создан", Toast.LENGTH_SHORT).show();
             }
         });
     }

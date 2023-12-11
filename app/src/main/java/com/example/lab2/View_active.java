@@ -129,23 +129,32 @@ public class View_active extends Activity {
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final Handler h = new Handler();
+
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-
                         db.deleteUser(dataName, pasName);
-                        //Toast.makeText(getApplicationContext(), "Пользователь удален", Toast.LENGTH_SHORT).show();
-                        yourActivityReference.runOnUiThread(new Runnable() {
+
+
+                        //.post(new Runnable() {
+
+                        h.post(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(getApplicationContext(), "Пользователь удален", Toast.LENGTH_SHORT).show();
+                                //////
+                                Toast.makeText(getApplicationContext(),"Пользователь удалён", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
                 }).start();
+
+                }
                /* user.remove(selectedItem);
                 listView.clearChoices();
                 adapter.notifyDataSetChanged();*/
                 //Toast.makeText(getApplicationContext(), "Пользователь удален", Toast.LENGTH_SHORT).show();
-            }
+
         });
        }
     }
