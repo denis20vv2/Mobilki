@@ -57,19 +57,6 @@ public class Main_Active extends Activity {
                 } else {
                     Toast.makeText(Main_Active.this, "Неправильный логин или пароль", Toast.LENGTH_SHORT).show();
                 }
-
-
-                /*if (username.equals("admin1") && password.equals("123456")) {
-
-                    Intent intent = new Intent(Main_Active.this, View_active.class);
-                    intent.putExtra("dataKey",username);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(Main_Active.this, "Неправильный логин или пароль", Toast.LENGTH_SHORT).show();
-                }*/
-
-
-
             }
 
         });
@@ -77,45 +64,46 @@ public class Main_Active extends Activity {
         button6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String username = textView.getText().toString();
-                String password = password_line.getText().toString();
-                String newPassword = editTextNumberPassword2.getText().toString();
 
-                boolean users = dbHandler.checkUser(username, password);
-                dbHandler.changePas(username, password, newPassword);
+
+
+                new Thread(new Runnable() {
+
+
+                    @Override
+                    public void run() {
+                        String username = textView.getText().toString();
+                        String password = password_line.getText().toString();
+                        String newPassword = editTextNumberPassword2.getText().toString();
+                        boolean users = dbHandler.checkUser(username, password);
+                        dbHandler.changePas(username, password, newPassword);
+                        //Toast.makeText(Main_Active.this, "Пароль изменён", Toast.LENGTH_SHORT).show();
+                    }
+                }).start();
             }
         });
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String username = textView.getText().toString();
-                String password = password_line.getText().toString();
-                dbHandler.addUser(new User(username, password));
+                //String username = textView.getText().toString();
+                //String password = password_line.getText().toString();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String username = textView.getText().toString();
+                        String password = password_line.getText().toString();
+                        dbHandler.addUser(new User(username, password));
+                        //Toast.makeText(Main_Active.this, "Пользователь создан", Toast.LENGTH_SHORT).show();
+                    }
+                }).start();
+
+
+
+
+                Toast.makeText(Main_Active.this, "Пользователь создан", Toast.LENGTH_SHORT).show();
             }
-
-
         });
     }
-
-
-
-    /*@Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.button:
-                db.addUser(new User(textView.getText().toString(), password_line.getText().toString()));
-                break;
-            case R.id.button3:
-                List<User> users = db.getAllUsers();
-                for (User usr : users) {
-                    String log = "Id: "+usr.getID()+" ,Login: " + usr.getLogin() + " ,Password: " + usr.getPass();
-                    Log.v("Loading...", log);
-                }
-                break;
-            default:
-                break;
-        }
-    }*/
 }
 
